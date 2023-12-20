@@ -1,0 +1,20 @@
+{
+  "name": "tree-sitter-hgrc",
+  "version": "1.0.0",
+  "description": "tree-sitter grammar for hgrc config files",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "tree-sitter test",
+    "format": "prettier --write grammar.js package.json",
+    "format-check": "prettier --check grammar.js package.json"
+  },
+  "author": "zegervdv",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "tree-sitter-cli": "^0.20.8"
+  }
+}

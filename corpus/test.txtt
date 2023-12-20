@@ -1,0 +1,151 @@
+====
+Basic .hgrc
+====
+
+# This is a comment
+[ui]
+user = Jane Doe <jane.doe@example.com>
+
+---
+
+(source
+  (comment)
+  (section
+	(name)
+	(option
+	  (option_name)
+	  (string))))
+
+
+====
+Empty section
+====
+
+# This is a comment
+[ui]
+
+---
+
+(source
+  (comment)
+  (section
+    (name)))
+
+====
+Empty options
+====
+
+# This is a comment
+[extensions]
+evolve =
+topic =
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (option
+      (option_name))
+    (option
+      (option_name))))
+
+
+====
+Boolean options
+====
+
+# This is a comment
+[experimental]
+topic-mode = enforce
+evolution = all
+
+[phases]
+publish = false
+publish = no
+publish = 0
+publish = off
+publish = true
+publish = yes
+publish = 1
+publish = on
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))
+    (option
+      (option_name)
+      (string)))
+  (section
+    (name)
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))))
+
+====
+Path options
+====
+
+# This is a comment
+[extensions]
+absorb = /path/to/some/file.py
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (option
+      (option_name)
+      (path))))
+
+====
+Multi-line values
+====
+
+# This is a comment
+[committemplate]
+changeset = {desc}\n\n
+  HG: {extramsg}
+  HG: user: {author}
+  HG: ----------- >8 ------------
+  HG: Do not touch the line above
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))))
