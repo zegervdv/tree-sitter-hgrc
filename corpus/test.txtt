@@ -179,3 +179,104 @@ absorb = /path/to/ext.py
       (path)))
     (include
       (path)))
+
+
+====
+indents
+====
+
+[spam]
+eggs=ham
+bacon=
+green=
+  eggs
+
+---
+
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))
+    (option
+      (option_name))
+    (option
+      (option_name)
+      (string))))
+
+====
+lists
+====
+
+# This is a comment
+[example]
+allow_read = "John Doe, PhD", brian, betty
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))))
+
+====
+comments
+====
+
+# This is a comment
+[extensions]
+# Also a comment
+topic =
+# This is also a comment
+absorb = /path/to/ext.py
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (comment)
+    (option
+      (option_name))
+    (comment)
+    (option
+      (option_name)
+      (path))))
+
+====
+more comments
+====
+
+# This is a comment
+[extensions] # This is also a comment
+topic = # this is not a comment
+# This is also a comment
+absorb = /path/to/ext.py # not a comment
+less =
+  /path/to/ext2.py
+# One more
+
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (comment)
+    (option
+      (option_name)
+      (string))
+    (comment)
+    (option
+      (option_name)
+      (path))
+    (option
+      (option_name)
+      (path))
+    (comment)))

@@ -6,11 +6,18 @@ module.exports = grammar({
   rules: {
     source: ($) => repeat(choice($.include, $.section, $.comment)),
 
-    include: ($) => seq("%include", $.path),
+    include: ($) => seq("%include", $.path, NEWLINE),
 
-    section: ($) => seq($._section_header, repeat($.option)),
+    section: ($) =>
+      prec.right(
+        seq(
+          $._section_header,
+          repeat(choice($.option, seq($.comment, NEWLINE))),
+        ),
+      ),
 
-    _section_header: ($) => prec(1, seq("[", $.name, "]", NEWLINE)),
+    _section_header: ($) =>
+      prec(1, seq("[", $.name, "]", optional($.comment), NEWLINE)),
 
     name: ($) => /[^\[\]\n]+/,
 
@@ -22,21 +29,10 @@ module.exports = grammar({
 
     string: ($) => repeat1(seq(/.+/, optional(seq(NEWLINE, /\s+/)))),
 
-    bool: ($) =>
-      choice(
-        "false",
-        "no",
-        "0",
-        "off",
-        "true",
-        "yes",
-        "1",
-        "on",
-      ),
+    bool: ($) => choice("false", "no", "0", "off", "true", "yes", "1", "on"),
 
     path: ($) => token(prec(2, seq(choice("/", ".", "~", "$"), /.+/))),
 
     comment: ($) => token(seq(choice("#", ";"), /.*/)),
   },
 });
-

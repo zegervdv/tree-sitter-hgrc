@@ -55,6 +55,10 @@
       "required": true,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "name",
           "named": true
         },
