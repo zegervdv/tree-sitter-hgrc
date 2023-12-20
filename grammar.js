@@ -4,7 +4,9 @@ module.exports = grammar({
   name: "hgrc",
 
   rules: {
-    source: ($) => repeat(choice($.section, $.comment)),
+    source: ($) => repeat(choice($.include, $.section, $.comment)),
+
+    include: ($) => seq("%include", $.path),
 
     section: ($) => seq($._section_header, repeat($.option)),
 
@@ -14,9 +16,9 @@ module.exports = grammar({
 
     option: ($) => seq($.option_name, "=", optional($._option_value), NEWLINE),
 
-    option_name: ($) => /[^=#\[\]]+/,
+    option_name: ($) => /[^=#;%\[\]]+/,
 
-    _option_value: ($) => choice($.string, $.bool),
+    _option_value: ($) => choice($.string, $.bool, $.path),
 
     string: ($) => repeat1(seq(/.+/, optional(seq(NEWLINE, /\s+/)))),
 
@@ -32,6 +34,7 @@ module.exports = grammar({
         "on",
       ),
 
+    path: ($) => token(prec(2, seq(choice("/", ".", "~", "$"), /.+/))),
 
     comment: ($) => token(seq(choice("#", ";"), /.*/)),
   },

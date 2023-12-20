@@ -149,3 +149,33 @@ changeset = {desc}\n\n
     (option
       (option_name)
       (string))))
+
+
+====
+Includes
+====
+
+# This is a comment
+%include ~/.hgrc.d/$HOST.rc
+
+[extensions]
+topic =
+absorb = /path/to/ext.py
+
+%include /path/to/included.hgrc
+
+---
+
+(source
+  (comment)
+  (include
+    (path))
+  (section
+    (name)
+    (option
+      (option_name))
+    (option
+      (option_name)
+      (path)))
+    (include
+      (path)))
