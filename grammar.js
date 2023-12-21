@@ -29,7 +29,7 @@ module.exports = grammar({
 
     string: ($) => repeat1(seq(/.+/, optional(seq(NEWLINE, /\s+/)))),
 
-    bool: ($) => choice("false", "no", "0", "off", "true", "yes", "1", "on"),
+    bool: ($) => choice("false", "no", "0", "off", "true", "yes", "1", "on", "True", "False"),
 
     path: ($) => token(prec(2, seq(choice("/", ".", "~", "$"), /.+/))),
 

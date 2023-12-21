@@ -70,6 +70,7 @@ publish = true
 publish = yes
 publish = 1
 publish = on
+publish = True
 
 ---
 
@@ -85,6 +86,9 @@ publish = on
       (string)))
   (section
     (name)
+    (option
+      (option_name)
+      (bool))
     (option
       (option_name)
       (bool))
@@ -280,3 +284,54 @@ less =
       (option_name)
       (path))
     (comment)))
+
+====
+Example user config
+====
+
+# example user config (see 'hg help config' for more info)
+[ui]
+# name and email, e.g
+username = Jane Doe <jdoe@example.com>
+
+# We recommend enabling tweakdefaults to get slight improvements to
+# the UI over time. Make sure to set HGPLAIN in the environment when
+# writing scripts!
+tweakdefaults = True
+
+[extensions]
+# uncomment the lines below to enable some popular extensions
+# (see 'hg help extensions' for more info)
+#
+histedit =
+
+[alias]
+[experimental]
+
+---
+
+(source
+  (comment)
+  (section
+    (name)
+    (comment)
+    (option
+      (option_name)
+      (string))
+    (comment)
+    (comment)
+    (comment)
+    (option
+      (option_name)
+      (bool)))
+  (section
+    (name)
+    (comment)
+    (comment)
+    (comment)
+    (option
+      (option_name)))
+  (section
+    (name))
+  (section
+    (name)))
