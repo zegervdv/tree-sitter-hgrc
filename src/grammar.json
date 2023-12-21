@@ -234,6 +234,14 @@
         {
           "type": "STRING",
           "value": "on"
+        },
+        {
+          "type": "STRING",
+          "value": "True"
+        },
+        {
+          "type": "STRING",
+          "value": "False"
         }
       ]
     },
