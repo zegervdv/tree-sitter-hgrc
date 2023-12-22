@@ -1,0 +1,86 @@
+====
+Default Config
+====
+# example user config (see 'hg help config' for more info)
+[ui]
+# name and email, e.g.
+username = Jane Doe <jdoe@example.com>
+
+# We recommend enabling tweakdefaults to get slight improvements to
+# the UI over time. Make sure to set HGPLAIN in the environment when
+# writing scripts!
+tweakdefaults = True
+
+# uncomment to disable color in command output
+# (see 'hg help color' for details)
+# color = never
+
+# uncomment to disable command output pagination
+# (see 'hg help pager' for details)
+# paginate = never
+merge = internal:merge3
+
+[extensions]
+# uncomment the lines below to enable some popular extensions
+# (see 'hg help extensions' for more info)
+#
+histedit =
+rebase =
+---
+(source
+  (comment)
+  (section
+    (name)
+	(comment)
+	(option
+	  (option_name)
+	  (string))
+	(comment)
+	(comment)
+	(comment)
+	(option
+	  (option_name)
+	  (bool))
+    (comment)
+    (comment)
+    (comment)
+    (comment)
+    (comment)
+    (comment)
+    (option
+      (option_name)
+      (string)))
+  (section
+    (name)
+    (comment)
+    (comment)
+    (comment)
+    (option
+      (option_name))
+    (option
+      (option_name))))
+
+====
+Example committemplate
+====
+[committemplate]
+changeset = {desc}\n\n
+    HG: Enter commit message.  Lines beginning with 'HG:' are removed.
+    HG: {extramsg}
+    HG: ------------------------ >8 ------------------------
+    HG: Do not touch the line above.
+    HG: Everything below will be removed.
+    {diff()}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (keyword))
+        (template
+          (keyword))
+        (template
+          (function))))))

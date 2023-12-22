@@ -1,0 +1,449 @@
+====
+Simple template word
+====
+[section]
+foo = {desc}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (keyword))))))
+
+====
+Multiple simple template words
+====
+[section]
+foo = {desc} {node}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (keyword))
+        (template
+          (keyword))))))
+
+====
+Template filters
+====
+[section]
+foo = {date|isodatesec}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (keyword)
+          (operator)
+          (filter))))))
+
+====
+Template functions
+====
+[section]
+foo = {pad("foo")}
+foo = {pad("foo", 10)}
+foo = {pad("foo", 10, left=True)}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string)))))
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string)
+            (number)))))
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string)
+            (number)
+            (named_argument
+              (bool))))))))
+
+====
+Empty function
+====
+[section]
+foo = {function()}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function))))))
+
+====
+Template examples 1
+====
+[section]
+foo = files:\n{files % '  {file}\n'}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (keyword)
+          (operator)
+          (string
+            (template
+              (keyword))))))))
+
+====
+Template examples 2
+====
+[section]
+foo = files: {join(files, ', ')}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (string)))))))
+
+====
+Template examples 3
+====
+[section]
+foo = pythonfiles: {join(files('**.py'), ', ')}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (function
+              (string))
+            (string)))))))
+
+====
+Template examples 4
+====
+[section]
+foo = {separate(' ', node, bookmarks, tags)}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string)
+            (keyword)
+            (keyword)
+            (keyword)))))))
+====
+Template examples 5
+====
+[section]
+foo = {splitlines(desc) % '**** {line}\n'}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword))
+          (operator)
+          (string
+            (template
+              (keyword))))))))
+====
+Template examples 6
+====
+[section]
+foo = {date(date, '%Y')}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (string)))))))
+====
+Template examples 7
+====
+[section]
+foo = {localdate(date, 'UTC')|date}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (string))
+          (operator)
+          (filter))))))
+====
+Template examples 8
+====
+[section]
+foo = {fill(desc, 30)}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (number)))))))
+====
+Template examples 9
+====
+[section]
+foo = {ifeq(branch, 'default', 'on the main branch', 'on branch {branch}')}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (string)
+            (string)
+            (string
+              (template
+                (keyword)))))))))
+====
+Template examples 10
+====
+[section]
+foo = {if(author, '{author}\n')}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (string
+              (template
+                (keyword)))))))))
+====
+Template examples 11
+====
+[section]
+foo = {label('changeset.{phase}', node|short)}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string
+              (template
+                (keyword)))
+            (keyword)
+            (operator)
+            (filter)))))))
+====
+Template examples 12
+====
+[section]
+foo = {sub(r'^.*\n?\n?', '', desc)}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (regex)
+            (string)
+            (keyword)))))))
+====
+Template examples 13
+====
+[section]
+foo = {join(extras, '\n')}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (string)))))))
+====
+Template examples 14
+====
+[section]
+foo = {bookmarks % '{bookmark}{ifeq(bookmark, active, '*')} '}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (keyword)
+          (operator)
+          (string
+            (template
+              (keyword))
+            (template
+              (function
+                (keyword)
+                (keyword)
+                (string)))))))))
+====
+Template examples 15
+====
+[section]
+foo = {latesttag('re:^.*-rc$') % '{tag}, {changes}, {distance}'}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string))
+          (operator)
+            (string
+              (template
+                (keyword))
+              (template
+                (keyword))
+              (template
+                (keyword))))))))
+====
+Template examples 16
+====
+[section]
+foo = {ifcontains(rev, revset('.'), '@')}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (keyword)
+            (function
+              (string))
+            (string)))))))
+====
+Template examples 17
+====
+[section]
+foo = {revset('parents(%d)', rev) % '{desc|firstline}\n'}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string)
+            (keyword))
+          (operator)
+          (string
+            (template
+              (keyword)
+              (operator)
+              (filter))))))))
+====
+Template examples 18
+====
+[section]
+foo = {startswith('template', firstline(desc))}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (string)
+            (function
+              (keyword))))))))
+====
+Template examples 19
+====
+[section]
+foo = {word(0, desc)}\n
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (function
+            (number)
+            (keyword)))))))

@@ -1,0 +1,193 @@
+====
+Section
+====
+[section]
+---
+(source
+  (section
+	(name)))
+
+====
+Comment
+====
+# Comment
+---
+(source
+  (comment))
+
+====
+Include
+====
+%include /path/to/file.rc
+----
+(source
+  (include
+    (path)))
+
+====
+Option
+====
+[section]
+option = foo
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))))
+
+====
+Section with comment
+====
+[section]
+# comment
+option = foo
+---
+(source
+  (section
+    (name)
+    (comment)
+    (option
+      (option_name)
+      (string))))
+
+====
+Multiple sections
+====
+[section1]
+option = foo
+[section2]
+option = bar
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string)))
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))))
+
+====
+Comment above section
+====
+# comment
+[section]
+---
+(source
+  (comment)
+  (section
+    (name)))
+
+====
+Empty Comments
+====
+#
+[section]
+---
+(source
+  (comment)
+  (section
+    (name)))
+
+====
+Blank lines
+====
+
+[section]
+
+---
+(source
+  (section
+    (name)))
+
+====
+Blank lines within section
+====
+[section]
+
+option = foo
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))))
+
+====
+Empty option strings
+====
+[section]
+option_a = all
+option_b =
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))
+    (option
+      (option_name))))
+
+====
+Multiple options
+====
+[section]
+foo = bar
+foo =
+bar = foo
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))
+    (option
+      (option_name))
+    (option
+      (option_name)
+      (string))))
+
+====
+Option string on next line
+====
+[section]
+foo =
+  bar
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))))
+
+====
+Multiline options
+====
+[section]
+foo = bar
+  or not to bar?
+  that is the question
+
+foo =
+foo = all
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))
+    (option
+      (option_name))
+    (option
+      (option_name)
+      (string))))
