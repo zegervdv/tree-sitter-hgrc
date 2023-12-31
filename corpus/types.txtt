@@ -1,0 +1,80 @@
+====
+String options
+====
+[section]
+foo = bar
+foo = bar
+  and more
+foo =
+  bar
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))
+    (option
+      (option_name)
+      (string))
+    (option
+      (option_name)
+      (string))))
+
+====
+Boolean options
+====
+[section]
+foo = yes
+foo = true
+foo = on
+foo = True
+foo = YES
+foo = no
+foo = false
+foo = False
+foo = off
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))
+    (option
+      (option_name)
+      (bool))))
+
+====
+Quotes in strings
+====
+[section]
+foo = bar 'text' bar
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string))))
