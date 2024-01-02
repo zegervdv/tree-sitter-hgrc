@@ -13,7 +13,7 @@ module.exports = grammar({
       seq(
         optional($._statement),
         repeat(seq($._newline, $._statement)),
-        optional($._newline)
+        optional($._newline),
       ),
 
     _statement: ($) => choice($.section, $.include, $.comment),
@@ -21,7 +21,7 @@ module.exports = grammar({
     section: ($) =>
       seq(
         $._section_header,
-        repeat(seq($._newline, optional(choice($.option, $.comment))))
+        repeat(seq($._newline, optional(choice($.option, $.comment)))),
       ),
 
     _section_header: ($) => seq("[", alias(/[^\]]+/, $.name), "]"),
@@ -42,9 +42,9 @@ module.exports = grammar({
             optional($._interpolated_text),
             $._newline,
             WS,
-            $._interpolated_text
-          )
-        )
+            $._interpolated_text,
+          ),
+        ),
       ),
 
     bool: ($) => choice($._bool_true, $._bool_false),
@@ -53,13 +53,13 @@ module.exports = grammar({
       choice(
         caseInsensitive("true"),
         caseInsensitive("yes"),
-        caseInsensitive("on")
+        caseInsensitive("on"),
       ),
     _bool_false: ($) =>
       choice(
         caseInsensitive("false"),
         caseInsensitive("no"),
-        caseInsensitive("off")
+        caseInsensitive("off"),
       ),
 
     include: ($) => seq("%include", alias(/[^\n]+/, $.path)),
@@ -79,15 +79,15 @@ module.exports = grammar({
           $.number,
           $.bool,
           $._list_operator,
-          $.regex
+          $.regex,
         ),
-        repeat($._filter)
+        repeat($._filter),
       ),
 
     _quoted_string: ($) =>
       choice(
         alias($._single_quoted_string, $.string),
-        alias($._double_quoted_string, $.string)
+        alias($._double_quoted_string, $.string),
       ),
     _single_quoted_string: ($) =>
       seq('"', repeat(choice(/[^{}"]+/, $.template)), '"'),
@@ -129,7 +129,7 @@ function caseInsensitive(keyword, aliasAsWord = true) {
     keyword
       .split("")
       .map((l) => (l !== l.toUpperCase() ? `[${l}${l.toUpperCase()}]` : l))
-      .join("")
+      .join(""),
   );
   if (aliasAsWord) result = alias(result, keyword);
   return result;
