@@ -84,3 +84,35 @@ changeset = {desc}\n\n
           (keyword))
         (template
           (function))))))
+====
+More Example committemplate
+====
+[committemplate]
+changeset = {desc}\n\n
+    HG: Enter commit message.  Lines beginning with 'HG:' are removed.
+    HG: {extramsg}
+    HG: {bookmarks % 
+   'HG: {bookmark}\n'}
+    HG: ------------------------ >8 ------------------------
+    HG: Do not touch the line above.
+    HG: Everything below will be removed.
+    {diff()}
+---
+(source
+  (section
+    (name)
+    (option
+      (option_name)
+      (string
+        (template
+          (keyword))
+        (template
+          (keyword))
+        (template
+          (keyword)
+          (operator)
+          (string
+            (template
+              (keyword))))
+        (template
+          (function))))))
