@@ -666,7 +666,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[\\t ]*%[\\t ]*"
+            "value": "[\\s]*%[\\s]*"
           },
           "named": true,
           "value": "operator"
