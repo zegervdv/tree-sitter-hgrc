@@ -82,6 +82,7 @@ module.exports = grammar({
           $.regex,
         ),
         repeat($._filter),
+        /\s*/,
       ),
 
     _quoted_string: ($) =>
@@ -105,18 +106,18 @@ module.exports = grammar({
       seq($._template_keyword, "(", optional($._function_args), ")"),
 
     _function_args: ($) =>
-      seq($._function_arg, repeat(seq(",", optional(WS), $._function_arg))),
+      seq($._function_arg, repeat(seq(/\s*,\s*/, $._function_arg))),
     _function_arg: ($) => choice($._expression, $.named_argument),
     named_argument: ($) =>
       seq($._template_keyword, /[\t ]*=[\t ]*/, $._expression),
 
     _list_operator: ($) =>
-      seq($._expression, alias(/[\s]*%[\s]*/, $.operator), $._quoted_string),
+      seq($._expression, alias(/\s*%\s*/, $.operator), $._quoted_string),
 
     _filter: ($) =>
       seq(alias("|", $.operator), alias($._template_keyword, $.filter)),
 
-    _template_keyword: ($) => /[a-zA-Z0-9]+/,
+    _template_keyword: ($) => /[a-zA-Z0-9_]+/,
 
     _text: ($) => /[^\n]+/,
 
