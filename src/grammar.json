@@ -419,6 +419,10 @@
             "type": "SYMBOL",
             "name": "_filter"
           }
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\s*"
         }
       ]
     },
@@ -601,20 +605,8 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "[\\t ]+"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "\\s*,\\s*"
               },
               {
                 "type": "SYMBOL",
@@ -666,7 +658,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[\\s]*%[\\s]*"
+            "value": "\\s*%\\s*"
           },
           "named": true,
           "value": "operator"
@@ -702,7 +694,7 @@
     },
     "_template_keyword": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9]+"
+      "value": "[a-zA-Z0-9_]+"
     },
     "_text": {
       "type": "PATTERN",
