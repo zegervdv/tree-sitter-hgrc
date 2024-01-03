@@ -1,6 +1,6 @@
-====
+================================================================================
 Default Config
-====
+================================================================================
 # example user config (see 'hg help config' for more info)
 [ui]
 # name and email, e.g.
@@ -26,21 +26,22 @@ merge = internal:merge3
 #
 histedit =
 rebase =
----
+--------------------------------------------------------------------------------
+
 (source
   (comment)
   (section
     (name)
-	(comment)
-	(option
-	  (option_name)
-	  (string))
-	(comment)
-	(comment)
-	(comment)
-	(option
-	  (option_name)
-	  (bool))
+    (comment)
+    (option
+      (option_name)
+      (string))
+    (comment)
+    (comment)
+    (comment)
+    (option
+      (option_name)
+      (bool))
     (comment)
     (comment)
     (comment)
@@ -60,9 +61,9 @@ rebase =
     (option
       (option_name))))
 
-====
+================================================================================
 Example committemplate
-====
+================================================================================
 [committemplate]
 changeset = {desc}\n\n
     HG: Enter commit message.  Lines beginning with 'HG:' are removed.
@@ -71,7 +72,8 @@ changeset = {desc}\n\n
     HG: Do not touch the line above.
     HG: Everything below will be removed.
     {diff()}
----
+--------------------------------------------------------------------------------
+
 (source
   (section
     (name)
@@ -84,9 +86,10 @@ changeset = {desc}\n\n
           (keyword))
         (template
           (function))))))
-====
+
+================================================================================
 More committemplate
-====
+================================================================================
 [committemplate]
 changeset = {desc}\n\n
   HG: Enter commit message.  Lines beginning with 'HG:' are removed.
@@ -105,7 +108,8 @@ changeset = {desc}\n\n
   HG: Do not touch the line above.
   HG: Everything below will be removed.
   {diff()}
----
+--------------------------------------------------------------------------------
+
 (source
   (section
     (name)
@@ -125,7 +129,7 @@ changeset = {desc}\n\n
             (string)
             (string)))
         (template
-           (keyword))
+          (keyword))
         (template
           (function
             (keyword)
@@ -137,25 +141,29 @@ changeset = {desc}\n\n
           (operator)
           (string
             (template
-              (keyword))))
+              (keyword))
+            (escape)))
         (template
           (keyword)
           (operator)
           (string
             (template
-              (keyword))))
+              (keyword))
+            (escape)))
         (template
           (keyword)
           (operator)
           (string
             (template
-              (keyword))))
+              (keyword))
+            (escape)))
         (template
           (keyword)
           (operator)
           (string
             (template
-              (keyword))))
+              (keyword))
+            (escape)))
         (template
           (function
             (keyword)
@@ -163,4 +171,3 @@ changeset = {desc}\n\n
             (string)))
         (template
           (function))))))
-

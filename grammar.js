@@ -91,9 +91,9 @@ module.exports = grammar({
         alias($._double_quoted_string, $.string),
       ),
     _single_quoted_string: ($) =>
-      seq('"', repeat(choice(/[^{}"]+/, $.template)), '"'),
+      seq('"', repeat(choice(/[^{}"]+/, $.escape, $.template)), '"'),
     _double_quoted_string: ($) =>
-      seq("'", repeat(choice(/[^{}']+/, $.template)), "'"),
+      seq("'", repeat(choice(/[^{}']+/, $.escape, $.template)), "'"),
 
     regex: ($) =>
       seq("r", choice(seq('"', /[^"]+/, '"'), seq("'", /[^']+/, "'"))),
@@ -118,6 +118,8 @@ module.exports = grammar({
       seq(alias("|", $.operator), alias($._template_keyword, $.filter)),
 
     _template_keyword: ($) => /[a-zA-Z0-9_]+/,
+
+    escape: ($) => choice("\\n"),
 
     _text: ($) => /[^\n]+/,
 
