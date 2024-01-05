@@ -138,7 +138,8 @@ foo = files: {join(files, ', ')}\n
         (template
           (function
             (keyword)
-            (string)))))))
+            (string)))
+        (escape)))))
 
 ================================================================================
 Template examples 3
@@ -157,7 +158,8 @@ foo = pythonfiles: {join(files('**.py'), ', ')}\n
           (function
             (function
               (string))
-            (string)))))))
+            (string)))
+        (escape)))))
 
 ================================================================================
 Template examples 4
@@ -177,7 +179,8 @@ foo = {separate(' ', node, bookmarks, tags)}\n
             (string)
             (keyword)
             (keyword)
-            (keyword)))))))
+            (keyword)))
+        (escape)))))
 
 ================================================================================
 Template examples 5
@@ -217,7 +220,8 @@ foo = {date(date, '%Y')}\n
         (template
           (function
             (keyword)
-            (string)))))))
+            (string)))
+        (escape)))))
 
 ================================================================================
 Template examples 7
@@ -237,7 +241,8 @@ foo = {localdate(date, 'UTC')|date}\n
             (keyword)
             (string))
           (operator)
-          (filter))))))
+          (filter))
+        (escape)))))
 
 ================================================================================
 Template examples 8
@@ -277,7 +282,8 @@ foo = {ifeq(branch, 'default', 'on the main branch', 'on branch {branch}')}\n
             (string)
             (string
               (template
-                (keyword)))))))))
+                (keyword)))))
+        (escape)))))
 
 ================================================================================
 Template examples 10
@@ -320,7 +326,8 @@ foo = {label('changeset.{phase}', node|short)}\n
                 (keyword)))
             (keyword)
             (operator)
-            (filter)))))))
+            (filter)))
+        (escape)))))
 
 ================================================================================
 Template examples 12
@@ -339,7 +346,8 @@ foo = {sub(r'^.*\n?\n?', '', desc)}\n
           (function
             (regex)
             (string)
-            (keyword)))))))
+            (keyword)))
+        (escape)))))
 
 ================================================================================
 Template examples 13
@@ -358,7 +366,8 @@ foo = {join(extras, '\n')}\n
           (function
             (keyword)
             (string
-              (escape))))))))
+              (escape))))
+        (escape)))))
 
 ================================================================================
 Template examples 14
@@ -383,7 +392,8 @@ foo = {bookmarks % '{bookmark}{ifeq(bookmark, active, '*')} '}\n
               (function
                 (keyword)
                 (keyword)
-                (string)))))))))
+                (string)))))
+        (escape)))))
 
 ================================================================================
 Template examples 15
@@ -408,7 +418,8 @@ foo = {latesttag('re:^.*-rc$') % '{tag}, {changes}, {distance}'}\n
             (template
               (keyword))
             (template
-              (keyword))))))))
+              (keyword))))
+        (escape)))))
 
 ================================================================================
 Template examples 16
@@ -428,7 +439,8 @@ foo = {ifcontains(rev, revset('.'), '@')}\n
             (keyword)
             (function
               (string))
-            (string)))))))
+            (string)))
+        (escape)))))
 
 ================================================================================
 Template examples 17
@@ -472,7 +484,8 @@ foo = {startswith('template', firstline(desc))}\n
           (function
             (string)
             (function
-              (keyword))))))))
+              (keyword))))
+        (escape)))))
 
 ================================================================================
 Template examples 19
@@ -490,4 +503,5 @@ foo = {word(0, desc)}\n
         (template
           (function
             (number)
-            (keyword)))))))
+            (keyword)))
+        (escape)))))

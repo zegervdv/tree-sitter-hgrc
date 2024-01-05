@@ -82,6 +82,8 @@ changeset = {desc}\n\n
       (string
         (template
           (keyword))
+        (escape)
+        (escape)
         (template
           (keyword))
         (template
@@ -118,16 +120,20 @@ changeset = {desc}\n\n
       (string
         (template
           (keyword))
+        (escape)
+        (escape)
         (template
           (keyword))
         (template
           (keyword))
+        (escape)
         (template
           (function
             (keyword)
             (string)
             (string)
-            (string)))
+            (string
+              (escape))))
         (template
           (keyword))
         (template
@@ -135,7 +141,8 @@ changeset = {desc}\n\n
             (keyword)
             (string
               (template
-                (keyword)))))
+                (keyword))
+              (escape))))
         (template
           (keyword)
           (operator)
@@ -168,6 +175,7 @@ changeset = {desc}\n\n
           (function
             (keyword)
             (string)
-            (string)))
+            (string
+              (escape))))
         (template
           (function))))))

@@ -6,7 +6,7 @@ module.exports = grammar({
 
   extras: ($) => [],
 
-  conflicts: ($) => [[$.section], [$.option], [$.string], [$._string]],
+  conflicts: ($) => [[$.section], [$.option], [$._string]],
 
   rules: {
     source: ($) =>
@@ -66,7 +66,8 @@ module.exports = grammar({
 
     comment: ($) => seq(choice("#", ";"), optional($._text)),
 
-    _interpolated_text: ($) => repeat1(choice(/[^{}\n]+/, $.template)),
+    _interpolated_text: ($) =>
+      repeat1(choice($.escape, /[^{}\n]+/, $.template)),
 
     template: ($) => seq("{", $._expression, "}"),
 
@@ -90,10 +91,10 @@ module.exports = grammar({
         alias($._single_quoted_string, $.string),
         alias($._double_quoted_string, $.string),
       ),
-    _single_quoted_string: ($) =>
-      seq('"', repeat(choice(/[^{}"]+/, $.escape, $.template)), '"'),
     _double_quoted_string: ($) =>
-      seq("'", repeat(choice(/[^{}']+/, $.escape, $.template)), "'"),
+      seq('"', repeat(choice($.escape, /[^{}"\\]+/, $.template)), '"'),
+    _single_quoted_string: ($) =>
+      seq("'", repeat(choice($.escape, /[^{}'\\]+/, $.template)), "'"),
 
     regex: ($) =>
       seq("r", choice(seq('"', /[^"]+/, '"'), seq("'", /[^']+/, "'"))),
@@ -119,7 +120,7 @@ module.exports = grammar({
 
     _template_keyword: ($) => /[a-zA-Z0-9_]+/,
 
-    escape: ($) => choice("\\n"),
+    escape: ($) => token(prec(5, seq("\\", /[a-z]/))),
 
     _text: ($) => /[^\n]+/,
 
