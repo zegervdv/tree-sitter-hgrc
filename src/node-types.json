@@ -10,11 +10,6 @@
     "fields": {}
   },
   {
-    "type": "escape",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "function",
     "named": true,
     "fields": {},
@@ -297,12 +292,12 @@
     "named": false
   },
   {
-    "type": "\\n",
+    "type": "]",
     "named": false
   },
   {
-    "type": "]",
-    "named": false
+    "type": "escape",
+    "named": true
   },
   {
     "type": "false",

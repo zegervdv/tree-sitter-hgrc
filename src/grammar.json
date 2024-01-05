@@ -350,6 +350,10 @@
         "type": "CHOICE",
         "members": [
           {
+            "type": "SYMBOL",
+            "name": "escape"
+          },
+          {
             "type": "PATTERN",
             "value": "[^{}\\n]+"
           },
@@ -449,7 +453,7 @@
         }
       ]
     },
-    "_single_quoted_string": {
+    "_double_quoted_string": {
       "type": "SEQ",
       "members": [
         {
@@ -462,12 +466,12 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[^{}\"]+"
-              },
-              {
                 "type": "SYMBOL",
                 "name": "escape"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^{}\"\\\\]+"
               },
               {
                 "type": "SYMBOL",
@@ -482,7 +486,7 @@
         }
       ]
     },
-    "_double_quoted_string": {
+    "_single_quoted_string": {
       "type": "SEQ",
       "members": [
         {
@@ -495,12 +499,12 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[^{}']+"
-              },
-              {
                 "type": "SYMBOL",
                 "name": "escape"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^{}'\\\\]+"
               },
               {
                 "type": "SYMBOL",
@@ -705,13 +709,24 @@
       "value": "[a-zA-Z0-9_]+"
     },
     "escape": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\\n"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 5,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[a-z]"
+            }
+          ]
         }
-      ]
+      }
     },
     "_text": {
       "type": "PATTERN",
@@ -729,9 +744,6 @@
     ],
     [
       "option"
-    ],
-    [
-      "string"
     ],
     [
       "_string"
