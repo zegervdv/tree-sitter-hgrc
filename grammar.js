@@ -67,7 +67,7 @@ module.exports = grammar({
     comment: ($) => seq(choice("#", ";"), optional($._text)),
 
     _interpolated_text: ($) =>
-      repeat1(choice($.escape, /[^{}\n]+/, $.template)),
+      repeat1(choice($.escape, /[^{}\n\\]+/, $.template)),
 
     template: ($) => seq("{", $._expression, "}"),
 

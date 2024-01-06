@@ -114,6 +114,7 @@ foo = files:\n{files % '  {file}\n'}
     (option
       (option_name)
       (string
+        (escape)
         (template
           (keyword)
           (operator)

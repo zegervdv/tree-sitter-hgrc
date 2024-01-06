@@ -136,6 +136,7 @@ changeset = {desc}\n\n
               (escape))))
         (template
           (keyword))
+        (escape)
         (template
           (function
             (keyword)
