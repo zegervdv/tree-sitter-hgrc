@@ -537,8 +537,13 @@
                   "value": "\""
                 },
                 {
-                  "type": "PATTERN",
-                  "value": "[^\"]+"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[^\"]+"
+                  },
+                  "named": true,
+                  "value": "regex_pattern"
                 },
                 {
                   "type": "STRING",
@@ -554,8 +559,13 @@
                   "value": "'"
                 },
                 {
-                  "type": "PATTERN",
-                  "value": "[^']+"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[^']+"
+                  },
+                  "named": true,
+                  "value": "regex_pattern"
                 },
                 {
                   "type": "STRING",

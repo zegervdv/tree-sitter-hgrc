@@ -145,7 +145,17 @@
   {
     "type": "regex",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "regex_pattern",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "section",
@@ -342,6 +352,10 @@
   {
     "type": "r",
     "named": false
+  },
+  {
+    "type": "regex_pattern",
+    "named": true
   },
   {
     "type": "true",
