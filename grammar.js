@@ -97,7 +97,7 @@ module.exports = grammar({
       seq("'", repeat(choice($.escape, /[^{}'\\]+/, $.template)), "'"),
 
     regex: ($) =>
-      seq("r", choice(seq('"', /[^"]+/, '"'), seq("'", /[^']+/, "'"))),
+      seq("r", choice(seq('"', alias(/[^"]+/, $.regex_pattern), '"'), seq("'", alias(/[^']+/, $.regex_pattern), "'"))),
 
     number: ($) => /[0-9]+/,
 

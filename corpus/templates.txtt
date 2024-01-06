@@ -344,7 +344,8 @@ foo = {sub(r'^.*\n?\n?', '', desc)}\n
       (string
         (template
           (function
-            (regex)
+            (regex
+              (regex_pattern))
             (string)
             (keyword)))
         (escape)))))
